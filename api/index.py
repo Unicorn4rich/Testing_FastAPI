@@ -1,6 +1,8 @@
 # FastAPI se import kar rahe hain, taaki hum API bana sakein
 from fastapi import FastAPI # type: ignore
 from pydantic import BaseModel  # structure define karta hai data ka
+from mangum import Mangum  # type: ignore
+# isse hum AWS Lambda ke liye FastAPI ko compatible bana rahe hain     
 
 
 # FastAPI ka ek instance bana rahe hain
@@ -53,3 +55,7 @@ def put_functon(name: str, data: kuch):
             names[i] = data.name
             break
     return names
+
+
+
+handler = Mangum(app)  # 👈 this makes it compatible with Vercel
